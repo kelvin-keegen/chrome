@@ -3,11 +3,11 @@ name: Build and Publish Docker Image
 on:
   push:
     branches:
-      - master
+      - main
       - 'release/*'
   pull_request:
     branches:
-      - master
+      - main
       - 'release/*'
 
 jobs:
@@ -31,12 +31,11 @@ jobs:
     - name: Build and push Docker image
       uses: docker/build-push-action@v4
       with:
-        context: ./docker
+        context: .
         push: true
         tags: |
           ghcr.io/${{ github.repository }}:${{ github.sha }}
           ghcr.io/${{ github.repository }}:latest
-          ghcr.io/${{ github.repository }}:v1.0.0
         labels: |
           org.opencontainers.image.source=${{ github.repositoryUrl }}
           org.opencontainers.image.revision=${{ github.sha }}
