@@ -1,7 +1,5 @@
 FROM ubuntu:22.04
 
-LABEL maintainer="Tomohisa Kusano <siomiz@gmail.com>"
-
 ENV VNC_SCREEN_SIZE=1024x768
 
 COPY copyables /
@@ -43,6 +41,9 @@ RUN useradd -m -G chrome-remote-desktop,pulse-access chrome && \
        session.screen0.defaultDeco:    NONE\n\
     ' >> /home/chrome/.fluxbox/init && \
     chown -R chrome:chrome /home/chrome/.config /home/chrome/.fluxbox
+
+# making download directory
+RUN mkdir -p /home/chrome/Downloads && chown chrome:chrome /home/chrome/Downloads && chmod -R 777 /home/chrome/Downloads
 
 USER chrome
 
