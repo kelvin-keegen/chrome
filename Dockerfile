@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+LABEL maintainer="Tomohisa Kusano <siomiz@gmail.com>"
+
 ENV VNC_SCREEN_SIZE=1024x768
 
 COPY copyables /
